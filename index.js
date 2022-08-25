@@ -241,6 +241,7 @@ puppeteer.launch({
             console.log(couresInfo.title);
             // 换算为分钟
             bar.start((totalTime / 1000 / 60).toFixed(1), 0)
+            // bar.start((120000 / 1000 / 60).toFixed(1), 0)
             let i = 0
             const timer = setInterval(function () {
                 i++;
@@ -248,12 +249,12 @@ puppeteer.launch({
                 if (i >= bar.getTotal()) {
                     clearInterval(timer);
                     logger.info("done");
-                    onComplete.apply(this)
                     bar.stop();
                     console.log('');
                 }
             }, 60000)
             await page.waitForTimeout(parseInt(couresInfo.time) + parseInt(randomTime))
+            // await page.waitForTimeout(120000)
         }
     }
     console.log("学习完成");
